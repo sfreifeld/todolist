@@ -1,13 +1,14 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import os 
+from flask_migrate import Migrate
 
-file_path = os.path.abspath(os.getcwd())+"/todo.db"
-  
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+file_path
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
 db = SQLAlchemy(app) 
-  
-  
-from app import routes
+migrate = Migrate(app, db)
+
+from app import routes, models
+
+
+ 
