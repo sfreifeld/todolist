@@ -11,28 +11,19 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <style>
-        #Hello {
-            font-family: 'Karla';
-            font-size: 100px;
-            font-weight:700;
-        }
-    
-        body {
-            font-family: 'Montserrat', cursive;   
-            font-size:25px;
-            font-weight: lighter;
-        }
+
 
     </style>
 </head>
 
 <body>
+<script type=text/javascript src="{{url_for('static', filename='js/main.js') }}"></script>
 <div id="wholeContainer">    
-    <p id="Hello">Welcome!<p>
+    <p id="Hello">Welcome Sabrina!<p>
     <div id="allHabitsContainer">
         <p>What things are you going to accomplish this week?</p><br>
         <div id="habitWrite">
-            <form>
+            <form action = "http://127.0.0.1:5000/todo" method="post">
                 <label for="habit">Habit:</label>
                 <input type="text" id="habit" name="habit">
                 <label for="goal">Goal:</label>
@@ -42,11 +33,13 @@
         </div> 
         <br>
         <div id="habitSaved">
-            <p id="habit2">Habit:   Goal:   Status: <button class="btn-lg btn-info btn-floating"><i class="fas fa-check"></i></button></p>
+            <p id="habit2">Habit: {{ habit }}   Goal: {{ goal }}  Status:   <div id="status">Not Started</div><button id="count" onclick="addOne(this)" class="btn-lg btn-info btn-floating">0</button></p>
         </div><br>
     </div>
 </div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/39992b1e55.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>
