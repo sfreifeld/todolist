@@ -5,6 +5,7 @@ from app import db
 from flask_wtf import FlaskForm
 from datetime import date
 from app.forms import habitForm
+from datetime import datetime, date, timedelta
 
 
 
@@ -12,9 +13,10 @@ from app.forms import habitForm
 def home():
     form = habitForm()
     if form.validate_on_submit():
+        date = datetime.utcnow()
         habit = request.form['habit']
         goal = request.form['goal']
-        record = toDo(habit, goal)
+        record = toDo(habit, goal, date)
         db.session.add(record)
         db.session.commit()
     return render_template('index.html', form = form)
