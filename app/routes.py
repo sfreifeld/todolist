@@ -1,22 +1,20 @@
-from flask import Flask, render_template, request, abort, url_for, redirect
+from flask import Flask, render_template, request, abort, url_for, redirect, flash
 from app import app
 from app.models import toDo
 from app import db
+from flask_wtf import FlaskForm
+from datetime import date
+from app.forms import habitForm
 
 
-@app.route('/') 
-def home(): 
-    return render_template('index.html') 
 
-@app.route('/todo', methods=['POST', 'GET']) 
-def submitToDo():
-    if request.method == 'POST':
+@app.route('/', methods=['POST', 'GET']) 
+def home():
+    form = habitForm()
+    if form.validate_on_submit():
         habit = request.form['habit']
         goal = request.form['goal']
-        db.session.add(habit)
+        record = toDo(habit, goal)
+        db.session.add(record)
         db.session.commit()
-        db.session.add(goal)
-        db.session.commit()
-        return render_template('index.html', habit = habit, goal = goal)
-    else:
-        return 'bye'
+    return render_template('index.html', form = form)
