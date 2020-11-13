@@ -26,8 +26,8 @@
             <div class="formwrapper">
                 
                 <form method="POST" action="/">
-                 <div class="form-field"> {{ form.hidden_tag() }} {{ form.habit.label }} {{ form.habit(size=20) }}</div>
-                    <div class="form-field">{{ form.goal.label }} {{ form.goal }}</div>
+                 <div class="form-field"> {{ form.hidden_tag() }} Habit: {{ form.habit(size=20) }}</div>
+                    <div class="form-field"> Goal: {{ form.goal }}</div>
                     {{ form.submit }}
                     </div>
                 </form>
